@@ -1,27 +1,24 @@
 #!/usr/bin/python3
-"""Pascal Triangle Interview Challenge"""
+"""pascal's triangle generator"""
 
 
-def pascal_triangle(turns):
-    """returns a list of lists of numbers
-    representing the pascal triangle"""
-    if turns <= 0:
-        return []
+def pascal_triangle(n):
+    """
+    returns a list of lists of integers representing the Pascal’s triangle of n
+    """
+    triangle = []
 
-    pascal_triangle = [0] * turns
+    # return (first row n <= 0)
+    if n <= 0:
+        return triangle
+    for i in range(n):
+        buffer = []
 
-    for outerLoop in range(turns):
-        # define the first row and fill first and last idx with 1
-        nextLine = [0] * (outerLoop+1)
-        nextLine[0] = 1
-        nextLine[len(nextLine) - 1] = 1
-
-        for innerLoop in range(1, outerLoop):
-            if innerLoop > 0 and innerLoop < len(nextLine):
-                a = pascal_triangle[outerLoop - 1][innerLoop]
-                b = pascal_triangle[outerLoop - 1][innerLoop - 1]
-                nextLine[innerLoop] = a + b
-
-        pascal_triangle[outerLoop] = nextLine
-
-    return pascal_triangle
+        for j in range(i+1):
+            if j == 0 or j == i:
+                buffer.append(1)
+            else:
+                buffer.append(triangle[i-1][j-1] + triangle[i-1][j])
+        triangle.append(buffer)
+    # print(triangle)
+    return triangle
