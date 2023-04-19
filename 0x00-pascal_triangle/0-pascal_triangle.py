@@ -2,15 +2,15 @@
 """Pascal Triangle Interview Challenge"""
 
 
-def pascal_triangle(turns):
+def pascal_triangle(n):
     """returns a list of lists of numbers
     representing the pascal triangle"""
-    if turns <= 0:
+    if n <= 0:
         return []
 
-    pascal_triangle = [0] * turns
+    pascal_triangle = [0] * n
 
-    for outerLoop in range(turns):
+    for outerLoop in range(n):
         # define the first row and fill first and last idx with 1
         nextLine = [0] * (outerLoop+1)
         nextLine[0] = 1
